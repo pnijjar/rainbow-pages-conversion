@@ -1,0 +1,13 @@
+<h2>{{ category }}</h2>
+
+{% for item in rainbow_items %}
+
+  <p>
+  <strong><i>{{ item['CompanyOrgName'] }}.</i></strong>
+  {{ item['Brief Description'] }}
+  {{ item['Telephone'] }}
+  <a href="{{ item['Web'] }}">{{ item['Web'] }}</a>
+  <a href="{{ item['FacebookPage'] }}">{{ item['FacebookPage'] }}</a>
+  </p>
+
+{% endfor %}
