@@ -15,11 +15,35 @@ SRC="2018-05SPECTRUM-DirDataStructureRevision.csv"
 HTML_TEMPLATE="rainbow-entry.jinja"
 TEMPLATE_DIR="."
 
+categories = {}
+
+# ==== FUNCTIONS ====
+
+def add_to_category (categories, keyval, row):
+    """ Add row to categories dict given keyval. """
+    if keyval != '':
+        if keyval not in categories:
+            categories[keyval] = {}
+
+        categories[keyval][row['CompanyOrgName']] = row
+
+
+
+
+
+# ==== MAIN ======
+
 with open(SRC) as rainbow_csv:
     reader = csv.DictReader(rainbow_csv)
 
-    #for row in reader:
+    for row in reader:
     #    print(row['CompanyOrgName'], row['Web'])
+        add_to_category (categories, row['PrimeCategory'], row)
+        add_to_category (categories, row['SecondCategory'], row)
+
+
+
+    # ==== RENDER TEMPLATE =====
 
     template_loader = jinja2.FileSystemLoader(
         searchpath=TEMPLATE_DIR,
@@ -33,13 +57,18 @@ with open(SRC) as rainbow_csv:
     template = template_env.get_template( HTML_TEMPLATE )
 
     template_vars = {
-      "category": "Moo cow",
-      "rainbow_items" : reader,
+      "categories": categories,
       }
 
     output_html = template.render(template_vars)
     print(output_html)
 
+
+#for cat in sorted(categories.keys()):
+#    print("==== {}".format(cat,))
+#    print(sorted(categories[cat].keys()))
+
+    
 
 
 
