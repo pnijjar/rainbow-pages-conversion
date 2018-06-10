@@ -11,7 +11,8 @@ Paul "Worthless" Nijjar, 2018-06-08
 import csv
 import jinja2
 
-SRC="2018-05SPECTRUM-DirDataStructureRevision.csv"
+#SRC="2018-05SPECTRUM-DirDataStructureRevision.csv"
+SRC="example-input.csv"
 HTML_TEMPLATE="rainbow-entry.jinja"
 TEMPLATE_DIR="."
 
