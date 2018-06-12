@@ -19,10 +19,15 @@
             {{ item['Telephone'] }}.
         {% endif %}
         {% if item['Web'] != '' %}
-            <a href="{{ item['Web'] }}">{{ item['Web'] }}</a>
+            <small><a href="{{ item['Web'] }}">{{ item['Web'] }}</a></small>
         {% endif %}
-        {% if item['FacebookPage'] %}
-            <a href="{{ item['FacebookPage'] }}">{{ item['FacebookPage'] }}</a>
+        {# Insert ampersand if BOTH facebook and web page exist #}
+        {% if item['Web'] != '' and item['FacebookPage'] != '' %}
+            <small> &amp; </small>
+        {% endif %}
+        {% if item['FacebookPage'] != '' %}
+            <small><a href="{{ item['FacebookPage'] }}">{{ item['FacebookPage'] }}</a>
+            </small>
         {% endif %}
         </p>
 
