@@ -22,13 +22,19 @@ Conversion Workflow
 -------------------
 
 You will need `pandoc` and something that can read Excel spreadsheet
-for this (LibreOffice worked for me)
+for this (LibreOffice worked for me).
+
+I used LibreOffice (4.3.3.2 on Linux) as the mechanism for converting
+from Excel format and to Word format. 
 
 - Take the Excel spreadsheet and save a copy in CSV format. Unicode
   output is okay.
 - Run this script to turn it into HTML.
-- Run `pandoc -o rainbow-pages.docx rainbow-pages.html` to convert the
-  HTML into Microsoft Word format.
+- Use LibreOffice to convert the HTML to .docx . I had problems doing
+  this in LibreOffice using "Save As" because of the embedded styles,
+  but the following command line worked: 
+  `libreoffice --headless --convert-to docx:"MS Word 2007 XML"  rainbow-pages.html`
 - Hand the .docx file to somebody who will import it into Microsoft
-  Publisher
+  Publisher.
 - Profit?
+
